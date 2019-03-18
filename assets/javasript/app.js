@@ -52,6 +52,8 @@ $(document).on("click", ".animal-button", function() {
             animalImg.attr("data-animate", results[i].images.fixed_height.url);
             animalImg.attr("data-state", "still");
             animalImg.attr("class", "gif");
+            //animalImg.attr("download", animalID + ".png");
+            //animalImg.attr("href", results[i].images.fixed_height_still.url);
 
             animalDiv.append(animalImg);
             animalDiv.append(p);
@@ -62,16 +64,19 @@ $(document).on("click", ".animal-button", function() {
     })
 })
 
+
 $(".btn-new-animal").on("click", function(event) {
 
     event.preventDefault();
 
     var newAnimal = $("#newInputAnimal").val().trim();
-    console.log('new animal is: ' + newAnimal);
-    animals.push(newAnimal);
-    console.log('new animal array: ' + animals);
-    createAnimalButtons();
 
+    if (newAnimal) {
+        console.log('new animal is: ' + newAnimal);
+        animals.push(newAnimal);
+        console.log('new animal array: ' + animals);
+        createAnimalButtons();
+    }
     $("#newInputAnimal").val(" ");
 
 })
@@ -91,6 +96,7 @@ $(document).on("click", ".gif", function() {
         $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
     }
+
 })
 
 createAnimalButtons();
