@@ -45,8 +45,7 @@ $(document).on("click", ".animal-button", function() {
             var animalDiv = $("<div>");
             var animalImg = $("<img>");
 
-            var p1 = $("<p>").text("Title: " + results[i].title);
-            var p2 = $("<p>").text("Rating: " + results[i].rating);
+            var p = $("<p>").html("Title: " + results[i].title + "<br/>Rating: " + results[i].rating);
 
             animalImg.attr("src", results[i].images.fixed_height_still.url);
             animalImg.attr("data-still", results[i].images.fixed_height_still.url);
@@ -55,8 +54,7 @@ $(document).on("click", ".animal-button", function() {
             animalImg.attr("class", "gif");
 
             animalDiv.append(animalImg);
-            animalDiv.append(p1);
-            animalDiv.append(p2);
+            animalDiv.append(p);
 
             $(".gifs-main").prepend(animalDiv);
 
