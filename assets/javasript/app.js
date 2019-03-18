@@ -3,14 +3,20 @@ var animals = ["kitten", "puppy", "bird", "elephant", "monkey", "frog", "squirre
 
 var apiKey = "TrWftTJtZQiw6rHMt6Iy5bHg8179Ty85";
 
-for (i=0; i<animals.length; i++) {
-    
-    var animalButton = '<button type="button" class="btn btn-primary animal-button" id="' + animals[i] + '">' + animals[i] + "</button>";
-    $(".main").append(animalButton);
-    console.log(animalButton);
+function createAnimalButtons() {
+
+    for (i=0; i<animals.length; i++) {
+
+        if (!document.getElementById(animals[i])) {
+            var animalButton = '<button type="button" class="btn btn-primary animal-button" id="' + animals[i] + '">' + animals[i] + "</button>";
+            $(".main").append(animalButton);
+            console.log('Button does not exist...adding');
+        }
+        console.log(animalButton);
+    }
 }
 
-$(".animal-button").on("click", function() {
+$(document).on("click", ".animal-button", function() {
 
     console.log('The animals array looks like this: ' + animals);
 
@@ -54,14 +60,17 @@ $(".animal-button").on("click", function() {
 
         }
     })
-
 })
 
-$(".btn-new-animal").on("click", function() {
-    var newAnimal = $("#newInputAnimal").val();
+$(".btn-new-animal").on("click", function(event) {
+
+    event.preventDefault();
+
+    var newAnimal = $("#newInputAnimal").val().trim();
     console.log('new animal is: ' + newAnimal);
     animals.push(newAnimal);
     console.log('new animal array: ' + animals);
+    createAnimalButtons();
 
 })
 
@@ -81,4 +90,6 @@ $(document).on("click", ".gif", function() {
         $(this).attr("data-state", "still");
     }
 })
+
+createAnimalButtons();
 
